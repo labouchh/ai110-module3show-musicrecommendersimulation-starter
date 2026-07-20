@@ -4,14 +4,7 @@
 
 In this project you will build and explain a small music recommender system.
 
-Your goal is to:
-
-- Represent songs and a user "taste profile" as data
-- Design a scoring rule that turns that data into recommendations
-- Evaluate what your system gets right and wrong
-- Reflect on how this mirrors real world AI recommenders
-
-Replace this paragraph with your own summary of what your version does.
+My recommender system uses song features and user preferences to find songs that are a good match. Each song has features like genre, mood, energy, tempo, and acousticness. The UserProfile stores what type of music the user prefers, including favorite genre, favorite mood, energy level, and whether they like acoustic songs. A point system is used by ranking highest to lowest, where the highest score is the best match.
 
 ---
 
@@ -19,18 +12,19 @@ Replace this paragraph with your own summary of what your version does.
 
 Explain your design in plain language.
 
-UserProfile would include liked songs, favorite genres and moods, and followed artists. A mix of behavioral signals and states preferences. 
+The system gives each song a score based on how well it matches the user's preferences. Genre matches add more points, mood matches add points, and songs with energy levels close to the user's target receive higher scores. The system then ranks all songs by their score and recommends the highest-scoring songs.
 Each song would include its own tempo, mood, and genre. It's important to have multiple data types under Song to make a more accurate recommendation. 
 
 Some prompts to answer:
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
+- What features does each `Song` use in your system?
+Features like genre, mood, energy, tempo, and acousticness are used for each song evaluation.
+- What information does your `UserProfile` store?
+Favorite genre, favorite mood, energy level, and whether they like acoustic songs or not (boolean).
+- How does your `Recommender` compute a score for each song?
+I used a point system where +2 pt is for a genre match, +1 for mood match, the closer the song is to the energy level prefered it gets more points, and for acousticness it gets a point if the user likes it. 
 - How do you choose which songs to recommend
-
-You can include a simple diagram or bullet list if helpful.
+The system builts evaluates each song based on the features and then ranks them with the closest song having the highest points.
 
 ---
 
@@ -73,42 +67,40 @@ You can add more tests in `tests/test_recommender.py`.
 
 Paste a sample of your recommender's output here as a text block so a reader can see what it produces:
 
-```
-# e.g.:
-# User profile: genre=indie, mood=chill, energy=low
-# Recommendations:
-#   1. ...
-#   2. ...
-#   3. ...
-```
+Loaded songs: 20
+
+High Energy Pop
+------------------------------
+Sunrise City - Score: 5.25
+Because: Genre match (+2.0); Mood match (+1.0); Energy similarity (+1.84); Acoustic preference (+0.41)
+
+Gym Hero - Score: 4.42
+Because: Genre match (+2.0); Energy similarity (+1.94); Acoustic preference (+0.47)
+
+...
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
 
 ---
 
 ## Experiments You Tried
+## Experiments You Tried
 
-Use this section to document the experiments you ran. For example:
+I tested my recommender using three different user profiles: High energy pop, chill lofi, and intense rock.
 
-- What happened when you changed the weight on genre from 2.0 to 0.5
-- What happened when you added tempo or valence to the score
-- How did your system behave for different types of users
+The high energy pop profile recommended songs like "Sunrise City" and "Gym Hero" because they matched the user's preferred genre, happy mood, and high energy level.
 
----
+The chill lofi profile recommended songs like "Library Rain" and "Midnight Coding" because they matched the lofi genre, chill mood, and lower energy preference.
+
+The intense rock profile recommended "Storm Runner" as the top result because it matched the rock genre, intense mood, and high energy preference.
+
+I also noticed that energy similarity has a strong effect on recommendations. Some songs from different genres can still rank highly if their energy level is close to the user's preference.It appears to be a hole in Ai's ability to handle human complex thinking. This showed me that adding more features, such as listening history, could make recommendations more accurate.
 
 ## Limitations and Risks
 
 Summarize some limitations of your recommender.
 
-Examples:
-
-- It only works on a tiny catalog
-- It does not understand lyrics or language
-- It might over favor one genre or mood
-
-You will go deeper on this in your model card.
-
----
+The system may recommend songs from different genres if they have similar energy levels. The algorithm does not fully understand musical style like a human listener would.
 
 ## Reflection
 
