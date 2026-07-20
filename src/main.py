@@ -10,25 +10,54 @@ You will implement the functions in recommender.py:
 """
 
 from recommender import load_songs, recommend_songs
-
-
 def main() -> None:
-    songs = load_songs("data/songs.csv") 
+    songs = load_songs("data/songs.csv")
+    print(f"Loaded songs: {len(songs)}")
+    user_profiles = [ 
+        {
+            "name": "High Energy Pop",
+            "preferences": {
+            "favorite_genre": "pop",
+            "favorite_mood": "happy",
+            "target_energy": 0.9,
+            "likes_acoustic": False
+            }
+        },
+        {
+            "name": "Chill Lofi",
+            "preferences": {
+            "favorite_genre": "lofi",
+            "favorite_mood": "chill",
+            "target_energy": 0.4,
+            "likes_acoustic": True
+            }
+        },
+        {
+            "name": "Deep Intense Rock",
+            "preferences": {
+            "favorite_genre": "rock",
+            "favorite_mood": "intense",
+            "target_energy": 0.95,
+            "likes_acoustic": False
+            }
+        }
+    ]
 
-    # Starter example profile
-    user_prefs = {"genre": "pop", "mood": "happy", "energy": 0.8}
+    for profile in user_profiles:
+        print("\n" + profile["name"])
+        print("-" * 30)
 
-    recommendations = recommend_songs(user_prefs, songs, k=5)
+        recommendations = recommend_songs(
+        profile["preferences"],
+        songs,
+        k=5
+        )
 
-    print("\nTop recommendations:\n")
-    for rec in recommendations:
-        # You decide the structure of each returned item.
-        # A common pattern is: (song, score, explanation)
-        song, score, explanation = rec
-        print(f"{song['title']} - Score: {score:.2f}")
-        print(f"Because: {explanation}")
-        print()
+        for rec in recommendations:
+            song, score, explanation = rec
 
-
+            print(f"{song['title']} - Score: {score:.2f}")
+            print(f"Because: {explanation}")
+            print()
 if __name__ == "__main__":
     main()

@@ -4,12 +4,14 @@
 
 Give your model a short, descriptive name.  
 Example: **VibeFinder 1.0**  
-
+YourNiche
 ---
 
 ## 2. Intended Use  
 
-Describe what your recommender is designed to do and who it is for. 
+Describe what your recommender is designed to do and who it is for.
+
+ The algorithm automatically picks up after listening to 3 songs continuously from the same artist. The mood of the songs and concepts related to events, could be a break up, a party, or a love song. It is targeting real users rather than a academic environment.
 
 Prompts:  
 
@@ -23,11 +25,12 @@ Prompts:
 
 Explain your scoring approach in simple language.  
 
+The scoring approach is mainly based on mood, genre, and whether they prefer a certain artist.
 Prompts:  
 
 - What features of each song are used (genre, energy, mood, etc.)  
 - What user preferences are considered  
-- How does the model turn those into a score  
+- How does the model turn those into a score
 - What changes did you make from the starter logic  
 
 Avoid code here. Pretend you are explaining the idea to a friend who does not program.

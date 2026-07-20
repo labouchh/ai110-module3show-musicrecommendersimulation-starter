@@ -19,6 +19,9 @@ Replace this paragraph with your own summary of what your version does.
 
 Explain your design in plain language.
 
+UserProfile would include liked songs, favorite genres and moods, and followed artists. A mix of behavioral signals and states preferences. 
+Each song would include its own tempo, mood, and genre. It's important to have multiple data types under Song to make a more accurate recommendation. 
+
 Some prompts to answer:
 
 - What features does each `Song` use in your system
